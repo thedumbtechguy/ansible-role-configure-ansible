@@ -1,0 +1,51 @@
+#
+# {{ ansible_managed }}
+#
+# config file for ansible -- https://ansible.com/
+# ===============================================
+
+# nearly all parameters can be overridden in ansible-playbook
+# or with command line flags. ansible will read ANSIBLE_CONFIG,
+# ansible.cfg in the current working directory, .ansible.cfg in
+# the home directory or /etc/ansible/ansible.cfg, whichever it
+# finds first
+
+[defaults]
+{% for conf in configure_self_config_defaults %}
+{{ conf.name }} = {{ conf.value }}
+{% endfor %}
+
+[privilege_escalation]
+{% for conf in configure_self_config_privilege_escalation %}
+{{ conf.name }} = {{ conf.value }}
+{% endfor %}
+
+[paramiko_connection]
+{% for conf in configure_self_config_paramiko_connection %}
+{{ conf.name }} = {{ conf.value }}
+{% endfor %}
+
+[ssh_connection]
+{% for conf in configure_self_config_ssh_connection %}
+{{ conf.name }} = {{ conf.value }}
+{% endfor %}
+
+[accelerate]
+{% for conf in configure_self_config_accelerate %}
+{{ conf.name }} = {{ conf.value }}
+{% endfor %}
+
+[selinux]
+{% for conf in configure_self_config_selinux %}
+{{ conf.name }} = {{ conf.value }}
+{% endfor %}
+
+[colors]
+{% for conf in configure_self_config_colors %}
+{{ conf.name }} = {{ conf.value }}
+{% endfor %}
+
+[diff]
+{% for conf in configure_self_config_diff %}
+{{ conf.name }} = {{ conf.value }}
+{% endfor %}

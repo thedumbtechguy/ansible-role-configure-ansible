@@ -1,0 +1,18 @@
+---
+
+
+- name: install vault password file
+  copy:
+    content: '{{ configure_self_vault_password }}'
+    dest: '{{ configure_self_vault_password_file }}'
+    owner: '{{ configure_self_vault_password_file_owner }}'
+    group: '{{ configure_self_vault_password_file_group }}'
+    mode: '{{ configure_self_vault_password_file_permissions }}'
+  when: configure_self_vault_password is defined and configure_self_vault_password|bool == True
+  no_log: true
+
+- name: ensure ansible is configured
+  template: 
+    src: 'ansible.cfg.j2' 
+    dest: '{{ configure_self_config_directory }}/ansible.cfg'
+  become: true

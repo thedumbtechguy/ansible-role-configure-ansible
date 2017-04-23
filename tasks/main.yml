@@ -1,0 +1,9 @@
+---
+
+- include: install.yml
+  tags:
+    - ansible_configuration
+
+- include: configuration.yml
+  tags:
+    - ansible_configuration
