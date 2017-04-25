@@ -10,42 +10,11 @@
 # the home directory or /etc/ansible/ansible.cfg, whichever it
 # finds first
 
-[defaults]
-{% for conf in configure_self_config_defaults %}
-{{ conf.name }} = {{ conf.value }}
+{% for section, items in configure_self_config_items.iteritems() %}
+[{{ section }}]
+
+{% for item in items.values() %}
+{{ item.name }} = {{ item.value }}
 {% endfor %}
 
-[privilege_escalation]
-{% for conf in configure_self_config_privilege_escalation %}
-{{ conf.name }} = {{ conf.value }}
-{% endfor %}
-
-[paramiko_connection]
-{% for conf in configure_self_config_paramiko_connection %}
-{{ conf.name }} = {{ conf.value }}
-{% endfor %}
-
-[ssh_connection]
-{% for conf in configure_self_config_ssh_connection %}
-{{ conf.name }} = {{ conf.value }}
-{% endfor %}
-
-[accelerate]
-{% for conf in configure_self_config_accelerate %}
-{{ conf.name }} = {{ conf.value }}
-{% endfor %}
-
-[selinux]
-{% for conf in configure_self_config_selinux %}
-{{ conf.name }} = {{ conf.value }}
-{% endfor %}
-
-[colors]
-{% for conf in configure_self_config_colors %}
-{{ conf.name }} = {{ conf.value }}
-{% endfor %}
-
-[diff]
-{% for conf in configure_self_config_diff %}
-{{ conf.name }} = {{ conf.value }}
 {% endfor %}

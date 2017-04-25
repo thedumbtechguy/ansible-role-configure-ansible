@@ -2,14 +2,15 @@
 
 configure_self_config_directory: /etc/ansible
 
-configure_self_config_defaults: []
-configure_self_config_privilege_escalation: []
-configure_self_config_paramiko_connection: []
-configure_self_config_ssh_connection: []
-configure_self_config_accelerate: []
-configure_self_config_selinux: []
-configure_self_config_colors: []
-configure_self_config_diff: []
+configure_self_config_items:
+    defaults: []
+    privilege_escalation: []
+    paramiko_connection: []
+    ssh_connection: []
+    accelerate: []
+    selinux: []
+    colors: []
+    diff: []
 
 # configure_self_vault_password
 configure_self_vault_password_file: /etc/ansible/.vpf
