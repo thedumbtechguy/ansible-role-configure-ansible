@@ -13,7 +13,7 @@
 {% for section, items in configure_ansible_config_items.iteritems() %}
 [{{ section }}]
 
-{% for item in configure_ansible_config_items.section %}
+{% for item in configure_ansible_config_items[section] %}
 {{ item.name }} = {{ item.value }}
 {% endfor %}
 
