@@ -26,20 +26,21 @@ An ansible role to configure ansible.
 
 - `configure_ansible_vault_password`: vault password. set this value to create a vault password file.
   - Default: `[undefined]`
-- `configure_ansible_vault_password_file`: vault password file.
-  - Default: `/etc/ansible/.vpf`
   > **NOTE**: setting this value only creates the vault password file.
   >
   > You will need to configure ansible to look here by setting the `vault_password_file` option under `configure_ansible_config_defaults`.
   >
   > If the default file permissions are used, you will need to run `ansible` commands as `sudo`, the defined `owner` or `group` member. Ansible exits with `ERROR! The vault password file /path/to/vault/file was not found` otherwise.
 
-- `configure_ansible_vault_password_file_owner`: owner of the password file.
-  - Default: `root`
-- `configure_ansible_vault_password_file_group`: group of the password file.
-  - Default: `root`
-- `configure_ansible_vault_password_file_permissions`: unix permissions to apply to the password file. fed to `chmod`.
-  - Default: `0644`
+
+- `configure_ansible_vault_password_file`: vault password file attributes.
+  - Default:
+  ```yaml
+    path: /etc/ansible/.vpf # path to password file.
+    owner: root # owner of the password file.
+    group: root # group of the password file.
+    permissions: 0640 #  unix permissions to apply to the password file. fed to `chmod`.
+  ```
 
 - `configure_ansible_install_apt`: additional apt packages to install.
   - Default:
@@ -66,6 +67,9 @@ You can find a documented list of [configuration values here](files/ansible.cfg)
 ```yaml
 - hosts: all
   vars:
+    configure_ansible_vault_password: "pa55w0rd"
+    configure_ansible_vault_password_file:
+      path: /etc/ansible/vault.pass
     configure_ansible_config_items:
       defaults:
         - { name: "host_key_checking", value: "False" }

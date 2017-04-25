@@ -1,8 +1,8 @@
 ---
 
-configure_self_config_directory: /etc/ansible
+configure_ansible_config_directory: /etc/ansible
 
-configure_self_config_items:
+configure_ansible_config_items:
     defaults: []
     privilege_escalation: []
     paramiko_connection: []
@@ -12,16 +12,17 @@ configure_self_config_items:
     colors: []
     diff: []
 
-# configure_self_vault_password
-configure_self_vault_password_file: /etc/ansible/.vpf
-configure_self_vault_password_file_owner: root
-configure_self_vault_password_file_group: root
-configure_self_vault_password_file_permissions: 0640
+# configure_ansible_vault_password
+configure_ansible_vault_password_file: 
+    path: /etc/ansible/.vpf
+    owner: root
+    group: root
+    permissions: 0640
 
-configure_self_install_apt:
+configure_ansible_install_apt:
     - python-passlib
     - python-pip
 
-configure_self_install_pip:
+configure_ansible_install_pip:
     - cryptography
 
